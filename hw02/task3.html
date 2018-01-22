@@ -4,21 +4,77 @@
 		<meta charset = "utf-8">
 		<meta name = "author" content = "Pahal Singhania">
 		<title> Task 2 </title>
+
+		<style> 
+			.menu {
+				float : left;
+				width : 33%;
+				text-align : center;
+			}
+			ul {
+				list-style : none;
+			}
+			.content {
+				float : right;
+				width : 66%;
+			}
+			.header {
+				width : 100%;
+				text-align : center;
+			}	
+		</style>
 	</head>
 	<body>
 		<div class = "header">
-			<h1> HW03 Task Three<h1>			
+			<h1> HW03 Task Three</h1>			
 		</div>
-		<div class = "column menu">
-			<ul> 
-				<li>Lorem Ipsum</li>
-				<li>99 Bottles</li>
-				<li>Last Thing</li>
-			</ul>
+		<div>
+			<div class = "column menu">
+				<ul> 
+					<li><a id ="default" href = "javascript: lorem();"> Lorem Ipsum</a></li>
+					<li><a href = "javascript: bottles();">99 Bottles</a></li>
+					<li><a href = "javascript: last();">Last Thing</a></li>
+				</ul>
+			</div>
+
+			<div id = "content" class = "column content"> 
+
+			</div>
 		</div>
-		<div id = "content" class = "column content"> 
 
 		<script>
+			// Text from wiki
+			// https://en.wikipedia.org/wiki/Lorem_ipsum
+			var x = "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+			x = x + " Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
+			x = x + " Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.";
+			x = x + " Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>";
+
+			// Text from wiki
+			// https://en.wikipedia.org/wiki/99_Bottles_of_Beer
+			var a = "<p> 99 bottles of beer on the wall, 99 bottles of beer. Take one down, pass it around, 98 bottles of beer on the wall...</p>";
+			
+			var b = "<p> 98 bottles of beer on the wall, 99 bottles of beer. Take one down, pass it around, 97 bottles of beer on the wall...</p>";
+
+			var c = "<p> 97 bottles of beer on the wall, 99 bottles of beer. Take one down, pass it around, 96 bottles of beer on the wall...</p>";
+
+			var d = "<p> 96 bottles of beer on the wall, 99 bottles of beer. Take one down, pass it around, 95 bottles of beer on the wall...</p>";
+
+			var z = "<p> this is the third thing </p>";
+
+			function lorem(){
+				 document.getElementById("content").innerHTML = x + x + x+ x;		
+			}
+
+			function bottles() {
+				 document.getElementById("content").innerHTML = a + b + c + d;     				
+			}
+
+			function last() {
+                                document.getElementById("content").innerHTML = z;
+			}
+			document.getElementById("default").click();
+		</script>
 			
 	</body>
 </html>
