@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang= "en">
+	<head>
+		<meta charset = "utf-8">
+		<meta name = "author" content = "Pahal Singhania">
+		<title> Task 2 </title>
+
+	</head>
+	<body>
+		<div>
+			<h2 >Hw02 Task 2 </h2>
+		</div>
+		<div>
+			<p id = "value">10<p>
+			<button onclick = "display()">Alert</button>
+			<button onclick = "increment()"> Increment </button>
+			<button onclick = "append()"> Append </button>
+		</div>
+
+		<div id = "app"> </div>
+		
+		<script> 
+			var value = document.getElementById("value");
+			function display() {
+				alert(value.innerHTML);
+			}
+			
+			function increment() {
+				value.innerHTML++;
+			}
+
+			// code adopted and modified from w3schools
+			// https://www.w3schools.com/js/js_htmldom_nodes.asp
+			function append() {
+				var para = document.createElement("p");
+				var node = document.createTextNode(value.innerHTML);
+				para.appendChild(node);
+				var element = document.getElementById("app");
+				element.appendChild (para);
+			}
+		</script>
+	</body>
+</html>
