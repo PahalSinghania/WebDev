@@ -1,0 +1,25 @@
+/* This file is for your main application css. */
+
+@import "bootstrap";
+
+.side { padding: 4ex; text-align: center; }
+
+h1 { text-align: center; }
+
+.tile { 
+	height: 100px;
+	float: left;
+	width: 100px;
+	text-align: center;
+}
+
+.score {
+	float: left;
+	padding : 0px;
+}
+
+.grid {
+	float: left;
+	width: 400px;
+	height: 400px;	
+}
