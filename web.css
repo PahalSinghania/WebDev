@@ -1,0 +1,163 @@
+
+*{	
+		 text-align:center;
+	}
+	body {	
+		height: 100%;
+	}
+	html {
+        height:100%;
+	}
+	p{ 
+		text-align : left;
+	}
+	
+    /*remove bullets*/
+	ul {
+		list-style:none; 
+    }
+
+	/*styling for the header*/
+	.navbar {
+		background-color: #222;
+	    padding : 0px;
+		text-align:left;
+		margin:0;
+		color: #8c8c8c;
+		border-radius: 0px;
+	}
+
+	/* styling for the social tab*/
+	.social {
+		padding: 20px;	
+	} 
+	.ik {
+		color: #8c8c8c;
+	}
+
+	/* styling for the navbar*/
+	.nav {	
+		background-color: #333;
+	}
+	.tab {
+		float: left;
+		color: white;
+	}
+
+	.well {
+		padding : 50px;
+		border-radius : 25px;
+	}
+
+	@media (max-width :768px){
+		.header,.nav {
+			display: none;
+		}
+	}
+
+
+	/*main styling*/
+
+	@media (min-width:768px) {
+		.h, .ab, .assign, .pr, .con {
+			position:fixed;
+			height:100%;
+		}
+	}
+
+	.h, .ab, .assign, .pr {
+		overflow:auto;
+	}
+
+	/* colour scheme for home tab*/
+	.h{
+		height: 100%;
+		color: #002e4d;
+		background-color: #fff6e6;
+		position: fixed;
+	}
+	.home {
+		background-color: lightblue;
+		color: #337ab7;
+	}
+	
+	/* colour scheme for about tab */
+	.ab {
+		background-color:#ffffe6;
+		color:#180033;
+	}
+	.ico {
+		color:#180033;
+	}	
+	.about{
+		background-color:#dec2ff;	
+		text-align : left;
+	}
+
+	@media (max-width :768px){
+		.info {
+			display: none;
+		}
+	}
+
+	
+	/* colour scheme for assign tab */
+	.assign{
+		background-color: #ebffe6;;
+		color: #330011;	
+		position:fixed;
+		height:100%;
+	}
+	.assignments{
+		background-color: #ff9999;
+	}
+	.as {
+		color:white;
+	}
+	
+	/* colour scheme for project tab*/
+	.pr {
+		background-color: #ffe6e6;
+		color: #001a00;
+	}
+	.projects {
+		background-color : lightgreen;
+		color: darkgreen;
+		text-align: left;
+	}
+	th,td {
+		padding:1px;	
+		text-align : left;
+	  color: #003300;
+	}
+
+	/* styling and colour scheme for contact tab*/
+	.con{
+		background-color: #ffe6e6;
+		padding:50px;
+	}
+	.contact {
+		background-color: #333;
+		color:#cccccc;
+	}	
+	.v1 {	
+		border-left:6px double lightgreen;
+		height: 170px;		
+	}
+	.card {
+		text-align :left;
+	}
+	.v2 {
+		font-size:24px;
+		color: #999999;	
+	}
+	.v3 {
+		color: #666666;
+	}
+	.symbol {
+		float:left;
+		width:30px;
+		height: 30px;
+		border-radius:50%;
+		background-color:lightgreen;
+	}

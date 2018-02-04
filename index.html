@@ -1,0 +1,227 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> Pahal Singhania </title>
+		<meta charset = "utf-8">
+		<meta name="viewport" content = "width=device.width, initial-scale=1">  
+		<meta name= "author" content = "Pahal Singhania">	
+		<link rel = "icon" href = "nu.png">
+		
+		<!-- Latest compiled and minified CSS -->		
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+		<!-- Open Sans font -->
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans" />
+
+		<!-- Add icon Library -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+				
+		<link rel="stylesheet" href="web.css">
+	</head>
+	<body>
+		<div class = "navbar">
+			<div class = "col-sm-3">
+				<h2> Web Dev </h2>
+			</div>
+			<div class = "col-sm-offset-6 col-sm-3 social header" >
+				<a  href = "https://github.com/PahalSinghania">
+					<i class = "ik fa fa-github-square" style="font-size:30px;" ></i>
+				</a>
+				<a  href = "https://www.linkedin.com/in/singhania-p">
+					<i class = "ik fa fa-linkedin-square" style="font-size:30px;" ></i>
+				</a>
+			</div>
+
+			<!--div class = "col-sm-1">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>	
+					<span class="icon-bar"></span>
+				</button>
+			</div-->
+		</div>
+		
+		<!-- nav bar -->
+		<div>
+			<ul class ="nav">
+				<li><a id = "default" class ="tab active" onClick = "tab(event, 'home');">Home</a></li>
+				<li><a class ="tab" onClick = "tab(event, 'about');">About Me</a></li>
+				<li><a class ="tab" onClick = "tab(event, 'assignments');">Assignments</a></li>
+				<li><a class ="tab" onClick = "tab(event, 'projects');">Projects</a></li>
+				<!--li><a class ="tab" onClick = "tab(event, 'experience');">Experience</a></li-->
+				<li><a class ="tab" onClick = "tab(event, 'contact');">Contact</a></li>
+
+			</ul>
+		</div>
+		
+		<!-- main -->
+		<div class = "container-fluid"	>
+			<div class = "row">
+
+				<!-- home tab -->
+				<div id = "home" class = "contents col-xs-12 h" >
+					<div>
+						<h2> Pahal Singhania</h2>
+					</div>
+					<div class = "home well col-sm-offset-2 col-sm-8">
+						<h5> Software | Web Developer</h5>
+						<div class = "social col-sm-6 col-sm-offset-3">
+							<a  href = "https://github.com/PahalSinghania">
+								<i class = "fa fa-github-square" style="font-size:50px;" ></i> 
+							</a>
+							<a  href = "https://www.linkedin.com/in/singhania-p"> 
+								<i class = "fa fa-linkedin-square" style="font-size:50px;" ></i>
+							</a>
+						</div>
+					</div>
+				</div>
+			
+				<!-- about tab -->
+				<div id = "about" class = "contents ab col-xs-12" >
+					<h3> Hello There! </h3>
+
+					<div class = "about well col-sm-offset-1 col-sm-10">
+
+						<div class = "info col-sm-4 col-xs-12"> 
+							<ul> 
+								<li> <span class"feild">Full Name: </span> Pahal Singhania  </li>
+								<br/>
+								<li> <span class"feild">Email: </span> singhania.p@husky.neu.edu </li>
+								<br/> 
+								 <li> <span class"feild">Availability:</span> July - December 2018 </li>
+							</ul>				
+						</div>
+
+						<div class = "col-sm-8 col-xs-12">
+							<p>I am Pahal, a candidate for a Bachelors of science, in Computer science, at Noertheastern University. I am proficient in Java, HTML and CSS. I am also familiar with js, c, c++, python, MIPS, racket and lisp. I also have some experience with photoshop and illustrator. I'm in my third year and looking for co-ops or internships. I am looking for a job where I get to work on real world problems and make a difference in the organisation that I am working for. </p>
+						</div>
+				
+						<div class = "col-sm-12 social">
+							<a href = "https://github.com/PahalSinghania">
+								<i class = "ico fa fa-github-square" style="font-size:38px;" ></i>
+							</a>
+							<a href = "https://www.linkedin.com/in/singhania-p">
+								<i class = "ico fa fa-linkedin-square" style="font-size:38px;" ></i>
+							</a>
+							<a href = "mailto:singhania.p@husky.neu.edu">
+								<i class = "ico fa fa-envelope" style="font-size:40px;" ></i>
+							</a>
+						</div>
+					</div>
+				</div>
+		
+				<!-- assignments tab -->
+				<div id = "assignments" class = "contents assign col-xs-12">
+					<h3>Assignments for the CS 4550 class</h3>
+					<div class = "assignments well col-sm-offset-1 col-sm-10">
+						<ul>
+							<li> <a class = "as" href = "http://hw01.pahalsinghania.com">Go to hw01</a> </li>
+							<li> <a class = "as" href = "http://hw02.pahalsinghania.com">Go to hw02</a> </li>
+							<li> <a class = "as" href = "http://memory.pahalsinghania.com">Go to hw03</a> </li>
+						</ul>
+					</div>
+				</div>
+			
+				<!--projects tab -->	
+				<div id = "projects" class = "col-xs-12 contents pr" >
+					<h3> Projects </h3>
+					<div class = "col-sm-offset-2 projects col-sm-8 well">
+						<table>
+							<tbody>
+							<tr>
+								<td> <h5> Memory Game</h5> </td>
+								<td> a phoenix application for a tile matching game that tests your memory </td>
+								<td><a href = "http://memory.pahalsinghania.com">Play Game</a> </td>
+							</tr>
+							<tr>	
+								<td> <h5> Tetris </h5> </td>
+								<td> a game of tetris written in racket </td> 
+								<td><a href = "https://github.com/PahalSinghania/Tetris">Link to code</a> </td>
+							</tr>
+							<tr>
+								<td> <h5> Free Cell </h5> </td>
+								<td> a text based game of free cell written in java </td> 
+								<td><a href = "https://github.com/PahalSinghania/FreeCell">Link to code</a> </td>
+							</tr>
+							<tr>
+								<td><h5> Service Tracker </h5></td>
+								<td> a community service tracking web application made for northeastern's NuACES program</td>
+								<td><a href = "#">See Demo </a> </td>
+							</tr>
+							<tr>
+								<td><h5> Music Editor </h5></td>
+								<td> an application for a music editor written in java </td>
+								<td><a href = "https://github.com/PahalSinghania/Music-Editor"> Link to code </a> </td>
+							</tr>
+							</tbody>
+						</table>
+						<br />
+					</div>
+				</div>
+
+				<!-- experience tab -->
+				<div id = "experience" class = "contents col-xs-12 exp" >
+					<p> experience </p>
+				</div>
+
+				<!-- contact tab -->
+				<div id = "contact" class = "contents col-xs-12 con" >		
+					<div class = "col-sm-offset-3 contact col-sm-6 well">
+						<div class= "col-xs-2">
+							<div class = "v1"></div>
+						</div>
+						<div>
+							<h1 class = "card"> Pahal Singhania </h1>
+							<h3 class = "v2 card"> Northeastern University </h2>
+							<h5 class = "v3 card"> College of Computer and Information Science </h5>
+						</div>		
+			
+						<div class = "col-xs-12">			
+							<br/>
+							<a href = "mailto:singhania.p@huskky.neu.edu" style="color:#999999;">			
+							<div class = "symbol">
+								<i class = "sym fa fa-envelope" style="font-size:25px; color:#333" ></i>
+							</div>
+							<div class= "col-xs-offset-1 card">
+								singhania.p@husky.neu.edu
+							<div>
+							</a>
+
+							<br/>
+							<br/>
+						</div>
+					</div>
+				</div>
+	
+			</div>
+		</div>
+			
+		<script>	
+			//code altered from http://www.w3chools
+			function tab(e, name) {
+				var i, content, links;
+				content = document.getElementsByClassName("contents");
+			//	links = document.getElementsByClassName("tab");
+				for ( i = 0; i < content.length; i++){
+					content[i].style.display = "none";
+			//		links.className[i] = links[i].className.replace("active", "");
+				}
+				document.getElementById(name).style.display = "block";
+				e.currentTarget.className += " active";
+			}
+			document.getElementById("default").click();
+			
+		</script>
+		
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+		<!-- Latest compiled JavaScript -->
+		 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		
+	</body>	
+</html>
+
+
