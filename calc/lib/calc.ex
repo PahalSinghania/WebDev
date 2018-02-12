@@ -15,56 +15,96 @@ defmodule Calc do
 	end
 
 	def eval(line) do
-	        seperate(line)	
-		|> parse([], [])
+		{n, op} = seperate(line) |> parse([], []) 
+		List.first(n)
 	end 
 	
 	def seperate(line) do 
 		String.trim(line, " ")
-		|> String.split("")
+		|> String.replace(~r/\(/,  " \\0  " ) 
+		|> String.replace(~r/\)/,  " \\0  " )
+		|> String.replace(~r/\+/,  " \\0  " )
+		|> String.replace(~r/\-/,  " \\0  " )
+		|> String.replace(~r/\*/,  " \\0  " )
+		|> String.replace(~r/\//,  " \\0  " )	
+		|> String.split(" ")
 		|> Enum.filter(fn a -> a != "" && a != " " end)
 	end 
 
 	def op?(x) do
-		x == "+" or x== "-" or x == "/" or x == "*"
+		x == "+" or x == "-" or x == "/" or x == "*"
 	end
 
-#	def compute(n, op) do 
-#		[n1 | n-tail] = n
-#		[n2 | n2-tail] = n-tail
-#		[fun| op-tail] = op
-#		n = n2-tail ++ calc(n1, fun, n2)
-#		{n, op-tail}
-#	end
+	#https://rosettacode.org/wiki/Determine_if_a_string_is_numeric#Elixir
+	defp num?(x) do
+		case Integer.parse(x) do
+			{_,_} -> true
+			{_num, ""} -> true
+      			_  -> false
+		end
+	end
+
+	def compute(n, op) do 
+		[fun| op] = op
+		[y | n] = n 
+		[x | n] = n 
+		n = [calc(x, fun, y)] ++ n
+		{n, op}
+	end
 
 	def parse(l, n, op) do 
-		[head | tail] = l
-		cond do 
-			not op?(head) -> 
-				try do
-					{x,y} = Integer.parse(head)
-					n = n ++ [x]
-				catch 
-					value -> nil
-				end
-			head == "(" ->
-				op = op  ++ [head]
-		#	head == ")" ->
-		#		{n, op} = compute(n, ops)
-		#	op?(head) -> 
-				#do something else
-		end			
+		if l != [] do 
+			[head | tail] = l 
+		 	cond do
+				num?(head)->
+					{x, _} = Integer.parse(head)
+					n = [x] ++ n
+				head == "(" ->
+					op = [head] ++ op
+				head == ")" ->
+					{n, op} = sum_op(n, op)
+				op?(head) -> 
+					{n, op} = add_op(head, n, op)
+					#op = [head] ++ op
+				true-> nil 
+			end	
+			{n, op} = parse(tail, n, op)
+		end
+		{n, op} = sum_op(n, op)
+	end
+	
+	def add_op(x, n, op) do 
+		if op != [] do 
+			[head | _] = op		
+			if (head == "*" or head =="/" or x == "+" or x == "-") and op?(head) do
+					{n, op} = compute(n, op)
+			end 
+		end
+		op = [x] ++ op
+		{n, op}	
 	end
 
+	def sum_op(n, op) do 
+		if op != [] do 
+			[head | tail] = op
+			cond do
+				(head == "(") ->
+					op = List.delete_at(op, 0)
+				op?(head) ->
+					{n, op} = compute(n, op)
+					{n, op} = sum_op(n, op)
+			end
+		end 
+		{n, op}
+	end
 	
-
 	def calc(x, op, y) do
 		cond do 
 			op == "+" -> x + y
-			op == "-" -> x - y
+			op == "-" -> x - y 
 			op == "*" -> x * y
 			op == "/" -> div(x, y)
-			true -> 
+			true -> nil
 		end
 	end
 end 
