@@ -1,6 +1,6 @@
 # Calc
 
-**TODO: Add description**
+**TODO: a Phoenix app for a caclulator that understands object presedence.**
 
 ## Installation
 
