@@ -1,0 +1,14 @@
+<h1>Memory Game</h1>
+
+	<!--https://hexdocs.pm/phoenix_html/Phoenix.HTML.Form.html-->
+	<%= form_for @conn, page_path(@conn, :new), fn f -> %>
+  		<div>
+			Join Game: 
+			<%= text_input f, :name, [placeholder: "Enter name of game you want to join"] %>
+  		</div>
+  		<%= submit "Submit", [class: "btn btn-primary"] %>
+	<% end %>
+</div>
+
+
+
