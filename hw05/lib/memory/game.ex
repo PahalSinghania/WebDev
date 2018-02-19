@@ -13,41 +13,40 @@ defmodule Memory.Game do
   end
 
   def client_view(game) do
-    ws = String.graphemes(game.word)
-    gs = game.guesses
-    %{
-      skel: skeleton(ws, gs),
-      goods: Enum.filter(gs, &(Enum.member?(ws, &1))),
-      bads: Enum.filter(gs, &(!Enum.member?(ws, &1))),
-      max: max_guesses(),
+    %{ tiles: game.tiles,
+       visible: game.visible,
+       clicks: game.clicks, 
+       score: game.score,
+       first: game.first,
+       second: game.second
     }
   end
 
-  def skeleton(word, guesses) do
-    Enum.map word, fn cc ->
-      if Enum.member?(guesses, cc) do
-        cc
-      else
-        "_"
-      end
+  def guess(state, i) do
+    t = state.tiles
+    c = state.clicks
+    v = state.visible
+    a = state.active
+    f = state.first
+    s = state.second
+    m = state.matches
+    sc = state.score
+    x = Enum.at(t, i)
+    y = Enum.at(v, i)
+
+    {c, a, f, s, m, sc} = cond do
+      a == 0 && f != i && y != 1 -> {c + 1, 1, i, -1, m, sc}
+      a == 1 && f != i && Enum.at(t, f) == x && y != 1-> {c + 1, 0, f, i, m + 1, sc + 10}
+      a == 1 && f != i && y != 1 -> {c + 1, 0, f, i, m, sc - 2}
+      true -> {c, a, f, s, m, sc} 	
     end
-  end
 
-  def guess(game, letter) do
-    if letter == "z" do
-      raise "That's not a real letter"
+    if Enum.at(t, f) == Enum.at(t,s) do 
+       v = List.replace_at(v, f, 1)
+       v = List.replace_at(v, i, 1)
     end
-
-    gs = game.guesses
-    |> MapSet.new()
-    |> MapSet.put(letter)
-    |> MapSet.to_list
-
-    Map.put(game, :guesses, gs)
-  end
-
-  def max_guesses do
-    10
+    %{state | clicks: c, visible: v, active: a, first: f, second: s, matches: m, score: sc}
+    
   end
 
   def make_tiles do

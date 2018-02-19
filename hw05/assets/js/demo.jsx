@@ -12,8 +12,8 @@ class Demo extends React.Component {
 		super(props);
 		this.channel = props.channel;
 		this.state = { 
-                  tiles:this.shuffle(),
-                  visible: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                  tiles:[],
+                  visible: [],
                   clicks: 0,
                   active: 0,
                   matches: 0,
@@ -24,71 +24,27 @@ class Demo extends React.Component {
                   .receive("ok", this.gotView.bind(this))
                   .receive("error", resp => {console.log("Unable to join", resp)});
 	}
-/*
-	toggle(side) {
-		var t = this.state.tiles;
-		var c = this.state.clicks;
-		var v = this.state.visible;
-		var a = this.state.active;
-		var f = this.state.first;
-		var s = this.state.second;
-		var m = this.state.matches; 
-		var sc = this.state.score;
-		if (f != side && v[side] != 1) {
-			c++;
-			if (this.state.active == 0) {
-				f = side;
-				a = 1;
-				s = -1;
-			} else if (this.state.active == 1 && f != side) {
-				if (t[f] == t[side]){
-					v[f] = 1;
-					v[side] = 1;
-					m = m+1;
-					sc = sc + 12;
-					if (m == 8) {
-						//game over
-						sc = sc - 2;
-						alert("You win, score:" + sc );
-					}
-				}
-				s = side;
-				a = 0;
-				sc = sc - 2;
-			}
-			var side = +!this.state.side;
-			this.setState({side: side, clicks:c, visible:v, second:s, active:a, first:f, matches:m, score:sc});
-			if (a == 0 && f != -1) {
-				setTimeout(() => {s = -1; f = -1;
-					this.setState({ second:s, first:f});}, 1000);
-			}
-		}	
-	}
 
-	//refrenced stack overflow https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
-	shuffle () {
-		let tiles = ['A', 'A', 'B', 'B', 'C', 'C', 'D', 'D', 'E', 'E', 'F', 'F', 'G', 'G', 'H', 'H'];
-		for (let i = 0; i < tiles.length; i++) {
-			let j = Math.floor(Math.random() * (i + 1));
-			[tiles[i], tiles[j]] = [tiles[j], tiles[i]];
-		}
-		return tiles;
+	toggle(side) {
+		this.channel.push("guess", {index: side})
+                  	.receive("ok", this.gotView.bind(this))
+                	.receive("error", resp => {console.log("Unable to join", resp)});
+	
 	}
+	
+	gotView(view) {
+    		console.log("New view", view);
+    		this.setState(view.game);
+  	}
 
 	restart() {
-		this.setState({tiles:this.shuffle(),
-					visible : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
- 					clicks : 0,
-					active : 0,
-          matches : 0,
-         	score : 0,
-					second : -1,
-          first : -1});
-  }
+    		this.channel.push("restart")
+ 			.receive("ok", this.gotView.bind(this))
+			.receive("error", resp => {console.log("Unable to restart", resp)});
+  	}
 
 	render() {
 		var toggle = this.toggle.bind(this);
-		//var state = {tiles : this.shuffle(), score : 20};
 		var restart = this.restart.bind(this);
 		var value =  ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''];
 		for (let i = 0; i < this.state.tiles.length; i++) {
@@ -140,9 +96,5 @@ class Demo extends React.Component {
 				</div>
 			</div>
 		);
-  }
-}
-
-*/
-
+  	}
 }
