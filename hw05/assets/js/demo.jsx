@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Button } from 'reactstrap';
 
 export default function run_demo(root, channel) {
-  
+   
   ReactDOM.render(<Demo channel = {channel}/>, root);
 }
 
@@ -11,18 +11,18 @@ class Demo extends React.Component {
 	constructor(props) {
 		super(props);
 		this.channel = props.channel;
-		this.state = { side: props.side,
-							tiles:this.shuffle(),
-					visible : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-					clicks : 0,
-					active : 0,
-					matches : 0,
-					score : 20,
-					second : -1,
-					first : -1};
-		 this.channel.join()
-                .receive("ok", this.gotView.bind(this))
-                .receive("error", resp => {console.log("Unable to join", resp)});
+		this.state = { 
+                  tiles:this.shuffle(),
+                  visible: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                  clicks: 0,
+                  active: 0,
+                  matches: 0,
+                  score: 20,
+                  second: -1,
+                  first: -1};
+		this.channel.join()
+                  .receive("ok", this.gotView.bind(this))
+                  .receive("error", resp => {console.log("Unable to join", resp)});
 	}
 /*
 	toggle(side) {
@@ -143,20 +143,6 @@ class Demo extends React.Component {
   }
 }
 
-function Side(params) {
-  if (params.show) {
-    return (
-      <div id="side-0" className="side col" onMouseOver={ () => params.toggle() }>
-        <Button onClick={ () => alert("cheater") }>Click Me</Button>
-      </div>
-    );
-  }
-  else {
-    return (
-      <div id="side-0" className="side col">
-        &nbsp;
-      </div>
-    );
-  }
 */
+
 }

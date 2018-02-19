@@ -20,14 +20,16 @@ import "phoenix_html";
 
 import socket from "./socket"
 
-import run_demo from "./demo";
+import run_demo from "./demo"
 
 function init() {
-  let root = document.getElementById('game');
+  let root = document.getElementById('root');
+
   if (root) {
     let channel = socket.channel("games:" + window.gameName, {});
     run_demo(root, channel);
   }
+
   if (document.getElementById('index-page')) {
     form_init();
   }	
