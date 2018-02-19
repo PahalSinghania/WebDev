@@ -2,7 +2,7 @@
 defmodule Memory.Game do
   def new do
     %{tiles: make_tiles(),
-      visible: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+      visible: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
       clicks: 0,
       active: 0,
       matches: 0,
@@ -11,47 +11,52 @@ defmodule Memory.Game do
       first: -1
     }
   end
-
-  def client_view(game) do
-    ws = String.graphemes(game.word)
-    gs = game.guesses
-    %{
-      skel: skeleton(ws, gs),
-      goods: Enum.filter(gs, &(Enum.member?(ws, &1))),
-      bads: Enum.filter(gs, &(!Enum.member?(ws, &1))),
-      max: max_guesses(),
-    }
-  end
-
-  def skeleton(word, guesses) do
-    Enum.map word, fn cc ->
-      if Enum.member?(guesses, cc) do
-        cc
-      else
-        "_"
-      end
-    end
-  end
-
-  def guess(game, letter) do
-    if letter == "z" do
-      raise "That's not a real letter"
-    end
-
-    gs = game.guesses
-    |> MapSet.new()
-    |> MapSet.put(letter)
-    |> MapSet.to_list
-
-    Map.put(game, :guesses, gs)
-  end
-
-  def max_guesses do
-    10
-  end
-
+	
   def make_tiles do
     tiles = ~w(A B C D E F G H A B C D E F G H)
     Enum.shuffle(tiles)
   end
+
+  def client_view(game) do
+    %{ 
+	tiles: game.tiles,
+	visible: game.visible,
+	clicks: game.clicks, 
+	score: game.score,
+	first: game.first,
+	second: game.second
+    }
+  end
+
+  def reset_turn(state) do
+    %{state |first: -1, second: -1}
+  end
+
+  def guess(state, i) do
+    t = state.tiles
+    c = state.clicks
+    v = state.visible
+    a = state.active
+    f = state.first
+    s = state.second
+    m = state.matches
+    sc = state.score
+    x = Enum.at(t, i)
+    y = Enum.at(v, i)
+    
+    {c, a, f, s, m, sc} = cond do
+      a == 0 && f != i && y != 1 -> {c + 1, 1, i, -1, m, sc}
+      a == 1 && f != i && Enum.at(t, f) == x && y != 1-> {c + 1, 0, f, i, m + 1, sc + 10}
+      a == 1 && f != i && y != 1 -> {c + 1, 0, f, i, m, sc - 2}
+      true -> {c, a, f, s, m, sc} 	
+    end
+
+    if Enum.at(t, f) == Enum.at(t,s) do 
+      v = List.replace_at(v, f, 1)
+      v = List.replace_at(v, i, 1)
+    end
+
+    %{state | clicks: c, visible: v, active: a, first: f, second: s, matches: m, score: sc}   
+  end
+
 end
