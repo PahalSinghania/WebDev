@@ -22,14 +22,14 @@ defmodule MemoryWeb.GamesChannel do
     game = Game.guess(socket.assigns[:game], i)
     Memory.GameBackup.save(socket.assigns[:name], game)
     socket = assign(socket, :game, game)
-    {:reply, {:ok, %{"game" => Game.client_view(game)}}, socket}
+    {:reply, {:ok, %{ "game" => Game.client_view(game)}}, socket}
   end
 
   def handle_in("restart", _, socket) do
     game = Game.new()
     Memory.GameBackup.save(socket.assigns[:name], game)
     socket = assign(socket, :game, game)
-    {:reply, {:ok, %{"game" => Game.client_view(game)}}, socket}
+    {:reply, {:ok, %{ "game" => Game.client_view(game)}}, socket}
   end
 
   # Add authorization logic here as required.

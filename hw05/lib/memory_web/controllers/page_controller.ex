@@ -6,7 +6,7 @@ defmodule MemoryWeb.PageController do
   end
 
   def game(conn, params) do
-    render conn, "game.html", game: params["game"]
+    render conn, "game.html", game: params["name"]
   end
 
   #https://hexdocs.pm/phoenix/controllers.html
